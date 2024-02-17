@@ -8,6 +8,31 @@
     <script src="./main.js" defer></script>
 </head>
 <body>
-    
+    <div class="page-container">
+        <header>My Library</header>
+        <div class="library-container">
+            <div class="create-card card">
+                <form action="">
+                    <div>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name">
+                    </div>
+                    <div>
+                        <label for="author">Author:</label>
+                        <input type="text" id="author">
+                    </div>
+                    <div>
+                        <label for="pages">Pages:</label>
+                        <input type="number" id="pages">
+                    </div>
+                    <div class="read">
+                        <label for="isRead">Read:</label>
+                        <input title="Read:" type="checkbox" name="isRead" id="isRead">
+                    </div>
+                    <button type="button">Add Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

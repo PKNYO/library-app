@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Kode+Mono:wght@400..700&display=swap');
+
+:root {
+    --white: rgba(213, 199, 176, 0.968);
+    --black: rgb(45, 45, 45);
+    --trans-black: rgba(45, 45, 45, 0.527);
+}
+
+body {
+    margin: 0;
+    font-family: 'Kode Mono', 'Courier New', Courier, monospace;
+
+    > .page-container {
+        display: grid;
+        grid-template-rows: minmax(80px, 10vh) 1fr;
+        min-height: 100vh;
+        overflow: auto;
+
+        > header {
+            display: flex;
+            grid-row: 1 / 2;
+            background-color: var(--white);
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--black);
+            border-bottom: solid 3px var(--black);
+        }
+
+        > .library-container {
+            grid-row: 2 / 3;
+            background-color: var(--white);
+            padding: 50px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 220px));
+            grid-auto-rows: 300px;
+            gap: 30px;
+
+            > .card {
+                background-color: var(--black);
+                border-radius: 10px;
+            }
+
+            > .create-card {
+                background-color: var(--trans-black);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                > form {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    > div {
+                        display: flex;
+                        flex-direction: column;
+                        
+                    }
+
+                    > .read {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
