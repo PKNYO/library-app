@@ -2,6 +2,7 @@
 
 :root {
     --white: rgba(213, 199, 176, 0.968);
+    --trans-white: rgba(213, 199, 176, 0.534);
     --black: rgb(45, 45, 45);
     --trans-black: rgba(45, 45, 45, 0.527);
 }
@@ -40,6 +41,16 @@ body {
             > .card {
                 background-color: var(--black);
                 border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                color: var(--white);
+
+                > h2, h3 {
+                    margin: 0;
+                }
             }
 
             > .create-card {
@@ -57,12 +68,23 @@ body {
                         display: flex;
                         flex-direction: column;
                         
+                        > input {
+                            border-radius: 5px;
+                            background-color: var(--trans-white);
+                        }
                     }
 
                     > .read {
                         display: flex;
                         flex-direction: row;
                         gap: 10px;
+                    }
+
+                    > button {
+                        background-color: var(--black);
+                        padding: 10px;
+                        color: var(--white);
+                        border-radius: 10px;
                     }
                 }
             }
