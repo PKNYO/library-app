@@ -11,9 +11,16 @@ function Book(name, author, pages, read) {
     this.read = read;
 }
 
-function addBookToLibrary(book) {
-    myLibrary.unshift(book);
-    console.log(myLibrary)
+function addBookToLibrary(newBook) {
+    myLibrary.push(newBook);
+    
+    while (createCard.nextSibling !== null) {
+        createCard.nextSibling.remove();
+    }
+
+    for (book of myLibrary) {
+        createBookCard(book.name, book.author, book.pages, book.read);
+    }
 }
 
 function createBookCard(name, author, pages, read) {
@@ -54,7 +61,6 @@ addButton.addEventListener(("click"), () => {
     const newBook = new Book(name.value, author.value, pages.value, read.checked);
 
     addBookToLibrary(newBook);
-    createBookCard(name.value, author.value, pages.value, read.checked);
 
     name.value = "";
     author.value = "";
