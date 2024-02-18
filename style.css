@@ -50,6 +50,7 @@ body {
 
                 > h2, h3 {
                     margin: 0;
+                    text-align: center;
                 }
             }
 
@@ -79,14 +80,14 @@ body {
                         flex-direction: row;
                         gap: 10px;
                     }
-
-                    > button {
-                        background-color: var(--black);
-                        padding: 10px;
-                        color: var(--white);
-                        border-radius: 10px;
-                    }
                 }
+            }
+
+            .button {
+                background-color: var(--black);
+                padding: 10px;
+                color: var(--white);
+                border-radius: 10px;
             }
         }
     }

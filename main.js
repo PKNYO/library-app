@@ -1,5 +1,4 @@
 const addButton = document.querySelector(".add-button");
-const libraryContainer = document.querySelector(".lybrary-container");
 const createCard = document.querySelector(".create-card");
 
 let myLibrary = [];
@@ -13,14 +12,9 @@ function Book(name, author, pages, read) {
 
 function addBookToLibrary(newBook) {
     myLibrary.push(newBook);
-    
-    while (createCard.nextSibling !== null) {
-        createCard.nextSibling.remove();
-    }
 
-    for (book of myLibrary) {
-        createBookCard(book.name, book.author, book.pages, book.read);
-    }
+    createBookCard(newBook.name, newBook.author, newBook.pages, newBook.read);
+    updateLibrary()
 }
 
 function createBookCard(name, author, pages, read) {
@@ -31,25 +25,54 @@ function createBookCard(name, author, pages, read) {
     const readDiv = document.createElement("div");
     const label = document.createElement("label");
     const input = document.createElement("input");
+    const button = document.createElement("button");
 
     cardDiv.classList.add("card");
+    cardDiv.classList.add("book-card");
+    button.classList.add("button");
 
-    input.setAttribute("type", "checkbox")
-    input.setAttribute("id", "read")
+    input.setAttribute("type", "checkbox");
+    input.setAttribute("id", "read");
 
     createCard.parentNode.insertBefore(cardDiv, createCard.nextSibling);
     cardDiv.appendChild(h2);
     cardDiv.appendChild(h3);
     cardDiv.appendChild(p);
     cardDiv.appendChild(readDiv);
+    cardDiv.appendChild(button);
     readDiv.appendChild(label);
     readDiv.appendChild(input);
 
     h2.textContent = name;
     h3.textContent = author;
     p.textContent = pages;
-    label.textContent = "Read:"
+    label.textContent = "Read:";
     input.checked = read;
+    button.textContent = "Delete";
+
+    button.addEventListener("click",(e) => deleteCard(e));
+}
+
+function deleteCard(element) {
+    element.target.parentNode.remove();
+
+    updateLibrary()
+}
+
+function updateLibrary() {
+    const cards = document.querySelectorAll(".book-card");
+
+    myLibrary = [];
+
+    cards.forEach((card) => {
+        const name = card.querySelector("h2").textContent;
+        const author = card.querySelector("h3").textContent;
+        const pages = card.querySelector("p").textContent;
+        const read = card.querySelector("input").checked;
+        const book = new Book(name, author, pages, read);
+
+        myLibrary.push(book);
+    })
 }
 
 addButton.addEventListener(("click"), () => {
