@@ -45,12 +45,27 @@ body {
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                gap: 20px;
+                gap: 10px;
+                padding: 20px;
                 color: var(--white);
+
+                > h2 {
+                    overflow: scroll;
+                }
+
+                > h3 {
+                    font-style: italic;
+                }
 
                 > h2, h3 {
                     margin: 0;
                     text-align: center;
+                }
+
+                > div {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
                 }
             }
 

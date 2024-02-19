@@ -24,39 +24,55 @@ function createBookCard(name, author, pages, read) {
     const p = document.createElement("p");
     const readDiv = document.createElement("div");
     const label = document.createElement("label");
-    const input = document.createElement("input");
-    const button = document.createElement("button");
+    const readText = document.createElement("p");
+    const buttonDiv = document.createElement("div");
+    const deleteButton = document.createElement("button");
+    const readButton = document.createElement("button");
 
     cardDiv.classList.add("card");
     cardDiv.classList.add("book-card");
-    button.classList.add("button");
+    deleteButton.classList.add("button");
+    readButton.classList.add("button");
 
-    input.setAttribute("type", "checkbox");
-    input.setAttribute("id", "read");
+    readText.setAttribute("id", "read");
 
     createCard.parentNode.insertBefore(cardDiv, createCard.nextSibling);
     cardDiv.appendChild(h2);
     cardDiv.appendChild(h3);
     cardDiv.appendChild(p);
     cardDiv.appendChild(readDiv);
-    cardDiv.appendChild(button);
+    cardDiv.appendChild(buttonDiv);
+    buttonDiv.appendChild(deleteButton);
+    buttonDiv.appendChild(readButton);
     readDiv.appendChild(label);
-    readDiv.appendChild(input);
+    readDiv.appendChild(readText);
 
     h2.textContent = name;
     h3.textContent = author;
     p.textContent = pages;
     label.textContent = "Read:";
-    input.checked = read;
-    button.textContent = "Delete";
+    readText.textContent = (read === true) ? "YES" : "NO";
+    console.log(readText.textContent)
+    deleteButton.textContent = "Delete";
+    readButton.textContent = "Read";
 
-    button.addEventListener("click",(e) => deleteCard(e));
+    deleteButton.addEventListener("click", (e) => deleteCard(e));
+    readButton.addEventListener("click", (e) => {isRead(e)});
 }
 
 function deleteCard(element) {
-    element.target.parentNode.remove();
+    element.target.parentNode.parentNode.remove();
 
-    updateLibrary()
+    updateLibrary();
+}
+
+function isRead(element) {
+    let readElement = element.target.parentNode.parentNode.querySelector("#read");
+
+    readElement.textContent = (readElement.textContent === "YES") ? "NO" : "YES";
+    console.log(readElement.textContent);
+
+    updateLibrary();
 }
 
 function updateLibrary() {
@@ -68,7 +84,7 @@ function updateLibrary() {
         const name = card.querySelector("h2").textContent;
         const author = card.querySelector("h3").textContent;
         const pages = card.querySelector("p").textContent;
-        const read = card.querySelector("input").checked;
+        const read = (card.querySelector("#read").textContent === "YES") ? true : false;
         const book = new Book(name, author, pages, read);
 
         myLibrary.push(book);
